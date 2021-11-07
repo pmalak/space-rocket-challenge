@@ -17,7 +17,7 @@ export default function App() {
   const getTimezonesBySiteName = async (data) => {
 
     const responses = await Promise.all( data.map( async place => {
-      const res = await fetch(`https://maps.googleapis.com/maps/api/timezone/json?location=${place.location?.latitude.toString()},${place.location?.longitude.toString()}&timestamp=1331161200&key=AIzaSyD9Xevw9LZjdbH5fjP0SXz-kGtYe6HmOhc`)
+      const res = await fetch(`https://maps.googleapis.com/maps/api/timezone/json?location=${place.location?.latitude.toString()},${place.location?.longitude.toString()}&timestamp=1331161200&key=${process.env.GOOGLE_API_KEY}`)
       const ss = await res.json()
       const {timeZoneId, timeZoneName} = ss
 
