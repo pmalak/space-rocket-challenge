@@ -14,19 +14,11 @@ export default function App() {
     "/launchpads",
   );
 
+  const getTimezonesBySiteName = async (data) => {
 
-
-
-  const test = async (data) => {
-
-    const resnponses = await Promise.all( data.map( async place => {
-      // console.log("location", place.name)
-      // console.log(`https://maps.googleapis.com/maps/api/timezone/json?location=${place.location?.latitude.toString()}-${place.location?.longitude.toString()}&timestamp=1331161200&key=AIzaSyD9Xevw9LZjdbH5fjP0SXz-kGtYe6HmOhc`)
-
+    const responses = await Promise.all( data.map( async place => {
       const res = await fetch(`https://maps.googleapis.com/maps/api/timezone/json?location=${place.location?.latitude.toString()},${place.location?.longitude.toString()}&timestamp=1331161200&key=AIzaSyD9Xevw9LZjdbH5fjP0SXz-kGtYe6HmOhc`)
       const ss = await res.json()
-
-
       const {timeZoneId, timeZoneName} = ss
 
       return {
@@ -37,7 +29,7 @@ export default function App() {
     }))
 
 
-    const result = resnponses.reduce((acc, current) => {
+    const result = responses.reduce((acc, current) => {
     const { name, timeZoneId, timeZoneName } = current
       return {
       ...acc,
@@ -49,11 +41,10 @@ export default function App() {
     }, {})
 
     console.log("result",  result)
-    return  result
   }
 
   if (data) {
-     test(data)
+     getTimezonesBySiteName(data)
   }
 
   return (
