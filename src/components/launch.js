@@ -31,6 +31,7 @@ export default function Launch() {
   const { data: launch, error } = useSpaceX(`/launches/${launchId}`);
 
   if (error) return <Error />;
+
   if (!launch) {
     return (
       <Flex justifyContent="center" alignItems="center" minHeight="50vh">
@@ -114,6 +115,10 @@ function Header({ launch }) {
 }
 
 function TimeAndLocation({ launch }) {
+
+  console.log("launch", launch)
+
+
   return (
     <SimpleGrid columns={[1, 1, 2]} borderWidth="1px" p="4" borderRadius="md">
       <Stat>
@@ -123,8 +128,10 @@ function TimeAndLocation({ launch }) {
             Launch Date
           </Box>
         </StatLabel>
+
+
         <StatNumber fontSize={["md", "xl"]}>
-          {formatDateTime(launch.launch_date_local)}
+          {formatDateTime(launch.launch_date_local, launch.launch_site.site_name)}
         </StatNumber>
         <StatHelpText>{timeAgo(launch.launch_date_utc)}</StatHelpText>
       </Stat>

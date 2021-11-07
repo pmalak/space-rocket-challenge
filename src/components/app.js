@@ -2,13 +2,60 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { Flex, Text } from "@chakra-ui/core";
 
-import Launches from "./launches";
-import Launch from "./launch";
-import Home from "./home";
-import LaunchPads from "./launch-pads";
-import LaunchPad from "./launch-pad";
+import Launches               from "./launches";
+import Launch                 from "./launch";
+import Home                   from "./home";
+import LaunchPads             from "./launch-pads";
+import LaunchPad                         from "./launch-pad";
+import { useSpaceX, useSpaceXPaginated } from "../utils/use-space-x";
 
 export default function App() {
+  const { data, error, isValidating, size, setSize } = useSpaceX(
+    "/launchpads",
+  );
+
+
+
+
+  const test = async (data) => {
+
+    const resnponses = await Promise.all( data.map( async place => {
+      // console.log("location", place.name)
+      // console.log(`https://maps.googleapis.com/maps/api/timezone/json?location=${place.location?.latitude.toString()}-${place.location?.longitude.toString()}&timestamp=1331161200&key=AIzaSyD9Xevw9LZjdbH5fjP0SXz-kGtYe6HmOhc`)
+
+      const res = await fetch(`https://maps.googleapis.com/maps/api/timezone/json?location=${place.location?.latitude.toString()},${place.location?.longitude.toString()}&timestamp=1331161200&key=AIzaSyD9Xevw9LZjdbH5fjP0SXz-kGtYe6HmOhc`)
+      const ss = await res.json()
+
+
+      const {timeZoneId, timeZoneName} = ss
+
+      return {
+         name: place.name,
+         timeZoneId,
+         timeZoneName
+      }
+    }))
+
+
+    const result = resnponses.reduce((acc, current) => {
+    const { name, timeZoneId, timeZoneName } = current
+      return {
+      ...acc,
+       [name]: {
+          timeZoneId,
+          timeZoneName
+          }
+       }
+    }, {})
+
+    console.log("result",  result)
+    return  result
+  }
+
+  if (data) {
+     test(data)
+  }
+
   return (
     <div>
       <NavBar />
