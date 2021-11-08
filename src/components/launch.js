@@ -31,7 +31,6 @@ export default function Launch() {
   const { data: launch, error } = useSpaceX(`/launches/${launchId}`);
 
   if (error) return <Error />;
-
   if (!launch) {
     return (
       <Flex justifyContent="center" alignItems="center" minHeight="50vh">
@@ -130,6 +129,12 @@ function TimeAndLocation({ launch }) {
         <StatNumber fontSize={["md", "xl"]}>
           {formatDateTime(launch.launch_date_local, launch.launch_site.site_name)}
         </StatNumber>
+
+        <StatNumber fontSize={["md", "xl"]}>
+          {formatDateTime(launch.launch_date_local)}
+        </StatNumber>
+
+
         <StatHelpText>{timeAgo(launch.launch_date_utc)}</StatHelpText>
       </Stat>
       <Stat>
