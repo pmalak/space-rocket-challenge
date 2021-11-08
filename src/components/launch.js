@@ -1,6 +1,6 @@
-import React from "react";
-import { useParams, Link as RouterLink } from "react-router-dom";
-import { format as timeAgo } from "timeago.js";
+import React                                 from "react";
+import { useParams, Link as RouterLink }     from "react-router-dom";
+import { format as timeAgo }                 from "timeago.js";
 import { Watch, MapPin, Navigation, Layers } from "react-feather";
 import {
   Flex,
@@ -19,12 +19,14 @@ import {
   Stack,
   AspectRatioBox,
   StatGroup,
-} from "@chakra-ui/core";
+  Tooltip
+}                                            from "@chakra-ui/core";
 
-import { useSpaceX } from "../utils/use-space-x";
+import { useSpaceX }      from "../utils/use-space-x";
 import { formatDateTime } from "../utils/format-date";
-import Error from "./error";
-import Breadcrumbs from "./breadcrumbs";
+import Error              from "./error";
+import Breadcrumbs        from "./breadcrumbs";
+
 
 export default function Launch() {
   let { launchId } = useParams();
@@ -33,7 +35,11 @@ export default function Launch() {
   if (error) return <Error />;
   if (!launch) {
     return (
-      <Flex justifyContent="center" alignItems="center" minHeight="50vh">
+      <Flex
+        justifyContent="center"
+        alignItems="center"
+        minHeight="50vh"
+      >
         <Spinner size="lg" />
       </Flex>
     );
@@ -52,7 +58,11 @@ export default function Launch() {
       <Box m={[3, 6]}>
         <TimeAndLocation launch={launch} />
         <RocketInfo launch={launch} />
-        <Text color="gray.700" fontSize={["md", null, "lg"]} my="8">
+        <Text
+          color="gray.700"
+          fontSize={["md", null, "lg"]}
+          my="8"
+        >
           {launch.details}
         </Text>
         <Video launch={launch} />
@@ -95,16 +105,28 @@ function Header({ launch }) {
       >
         {launch.mission_name}
       </Heading>
-      <Stack isInline spacing="3">
-        <Badge variantColor="purple" fontSize={["xs", "md"]}>
+      <Stack
+        isInline
+        spacing="3"
+      >
+        <Badge
+          variantColor="purple"
+          fontSize={["xs", "md"]}
+        >
           #{launch.flight_number}
         </Badge>
         {launch.launch_success ? (
-          <Badge variantColor="green" fontSize={["xs", "md"]}>
+          <Badge
+            variantColor="green"
+            fontSize={["xs", "md"]}
+          >
             Successful
           </Badge>
         ) : (
-          <Badge variantColor="red" fontSize={["xs", "md"]}>
+          <Badge
+            variantColor="red"
+            fontSize={["xs", "md"]}
+          >
             Failed
           </Badge>
         )}
@@ -116,31 +138,53 @@ function Header({ launch }) {
 function TimeAndLocation({ launch }) {
 
   return (
-    <SimpleGrid columns={[1, 1, 2]} borderWidth="1px" p="4" borderRadius="md">
+    <SimpleGrid
+      columns={[1, 1, 2]}
+      borderWidth="1px"
+      p="4"
+      borderRadius="md"
+    >
       <Stat>
         <StatLabel display="flex">
-          <Box as={Watch} width="1em" />{" "}
-          <Box ml="2" as="span">
+          <Box
+            as={Watch}
+            width="1em"
+          />{" "}
+          <Box
+            ml="2"
+            as="span"
+          >
             Launch Date
           </Box>
         </StatLabel>
 
 
-        <StatNumber fontSize={["md", "xl"]}>
-          {formatDateTime(launch.launch_date_local, launch.launch_site.site_name)}
-        </StatNumber>
+        <Tooltip
+          label={formatDateTime(launch.launch_date_local)}
+          placement="bottom"
+          aria-label="A tooltip"
 
-        <StatNumber fontSize={["md", "xl"]}>
-          {formatDateTime(launch.launch_date_local)}
-        </StatNumber>
+        >
+          <Box>
+            <StatNumber fontSize={["md", "xl"]}>
+              {formatDateTime(launch.launch_date_local, launch.launch_site.site_name)}
+            </StatNumber>
+          </Box>
+        </Tooltip>
 
 
         <StatHelpText>{timeAgo(launch.launch_date_utc)}</StatHelpText>
       </Stat>
       <Stat>
         <StatLabel display="flex">
-          <Box as={MapPin} width="1em" />{" "}
-          <Box ml="2" as="span">
+          <Box
+            as={MapPin}
+            width="1em"
+          />{" "}
+          <Box
+            ml="2"
+            as="span"
+          >
             Launch Site
           </Box>
         </StatLabel>
@@ -171,8 +215,14 @@ function RocketInfo({ launch }) {
     >
       <Stat>
         <StatLabel display="flex">
-          <Box as={Navigation} width="1em" />{" "}
-          <Box ml="2" as="span">
+          <Box
+            as={Navigation}
+            width="1em"
+          />{" "}
+          <Box
+            ml="2"
+            as="span"
+          >
             Rocket
           </Box>
         </StatLabel>
@@ -184,8 +234,14 @@ function RocketInfo({ launch }) {
       <StatGroup>
         <Stat>
           <StatLabel display="flex">
-            <Box as={Layers} width="1em" />{" "}
-            <Box ml="2" as="span">
+            <Box
+              as={Layers}
+              width="1em"
+            />{" "}
+            <Box
+              ml="2"
+              as="span"
+            >
               First Stage
             </Box>
           </StatLabel>
@@ -202,8 +258,14 @@ function RocketInfo({ launch }) {
         </Stat>
         <Stat>
           <StatLabel display="flex">
-            <Box as={Layers} width="1em" />{" "}
-            <Box ml="2" as="span">
+            <Box
+              as={Layers}
+              width="1em"
+            />{" "}
+            <Box
+              ml="2"
+              as="span"
+            >
               Second Stage
             </Box>
           </StatLabel>
@@ -224,7 +286,10 @@ function RocketInfo({ launch }) {
 
 function Video({ launch }) {
   return (
-    <AspectRatioBox maxH="400px" ratio={1.7}>
+    <AspectRatioBox
+      maxH="400px"
+      ratio={1.7}
+    >
       <Box
         as="iframe"
         title={launch.mission_name}
@@ -237,9 +302,16 @@ function Video({ launch }) {
 
 function Gallery({ images }) {
   return (
-    <SimpleGrid my="6" minChildWidth="350px" spacing="4">
+    <SimpleGrid
+      my="6"
+      minChildWidth="350px"
+      spacing="4"
+    >
       {images.map((image) => (
-        <a href={image} key={image}>
+        <a
+          href={image}
+          key={image}
+        >
           <Image src={image.replace("_o.jpg", "_z.jpg")} />
         </a>
       ))}
