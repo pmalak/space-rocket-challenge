@@ -95,17 +95,28 @@ function Header({ launch }) {
         objectFit="contain"
         objectPosition="bottom"
       />
-      <Heading
-        color="white"
-        display="inline"
-        backgroundColor="#718096b8"
-        fontSize={["lg", "5xl"]}
-        px="4"
-        py="2"
-        borderRadius="lg"
+      <Box
+        d="flex"
+        alignItems="center"
       >
-        {launch.mission_name}
-      </Heading>
+        <Heading
+          color="white"
+          display="inline"
+          backgroundColor="#718096b8"
+          fontSize={["lg", "5xl"]}
+          px="4"
+          py="2"
+          borderRadius="lg"
+        >
+          {launch.mission_name}
+        </Heading>
+
+        <ToggleFavoriteLaunchButton
+          launch={launch}
+          variant="solid"
+          size="md"
+        />
+      </Box>
       <Stack
         isInline
         spacing="3"
@@ -132,8 +143,6 @@ function Header({ launch }) {
           </Badge>
         )}
       </Stack>
-
-      <ToggleFavoriteLaunchButton launch={launch}/>
     </Flex>
   );
 }

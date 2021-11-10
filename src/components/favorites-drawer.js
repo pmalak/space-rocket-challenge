@@ -47,7 +47,7 @@ export const FavoriteLaunchesDrawer = () => {
           <DrawerHeader>Favorites</DrawerHeader>
 
           <DrawerBody overflowY={"scroll"}>
-            <div>Launches ({favoriteLaunches.length})</div>
+            <Text fontSize="md" marginBottom={2}>Launches ({favoriteLaunches.length})</Text>
 
             {favoriteLaunches.map(launch =>
 

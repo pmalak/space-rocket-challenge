@@ -1,13 +1,13 @@
-import React                                         from "react";
+import React from "react";
 import { Badge, Box, Image, SimpleGrid, Text, Flex } from "@chakra-ui/core";
-import { format as timeAgo }                         from "timeago.js";
-import { Link }                                      from "react-router-dom";
-import { useSpaceXPaginated }                        from "../utils/use-space-x";
-import { formatDate }                                from "../utils/format-date";
-import Error                                         from "./error";
-import Breadcrumbs                                   from "./breadcrumbs";
-import LoadMoreButton                                from "./load-more-button";
-import { ToggleFavoriteLaunchButton }                from "./toggle-favorite-flight-button";
+import { format as timeAgo } from "timeago.js";
+import { Link } from "react-router-dom";
+import { useSpaceXPaginated } from "../utils/use-space-x";
+import { formatDate } from "../utils/format-date";
+import Error from "./error";
+import Breadcrumbs from "./breadcrumbs";
+import LoadMoreButton from "./load-more-button";
+import { ToggleFavoriteLaunchButton } from "./toggle-favorite-flight-button";
 
 const PAGE_SIZE = 12;
 
@@ -87,41 +87,48 @@ export function LaunchItem({ launch }) {
 
 
       <Box p="6">
-
         <Box
           d="flex"
+          justifyContent="space-between"
           alignItems="baseline"
         >
-          {launch.launch_success ? (
-            <Badge
-              px="2"
-              variant="solid"
-              variantColor="green"
-            >
-              Successful
-            </Badge>
-          ) : (
-            <Badge
-              px="2"
-              variant="solid"
-              variantColor="red"
-            >
-              Failed
-            </Badge>
-          )}
           <Box
-            color="gray.500"
-            fontWeight="semibold"
-            letterSpacing="wide"
-            fontSize="xs"
-            textTransform="uppercase"
-            ml="2"
+            d="flex"
+            alignItems="baseline"
           >
-            {launch.rocket.rocket_name} &bull; {launch.launch_site.site_name}
+            {launch.launch_success ? (
+              <Badge
+                px="2"
+                variant="solid"
+                variantColor="green"
+              >
+                Successful
+              </Badge>
+            ) : (
+              <Badge
+                px="2"
+                variant="solid"
+                variantColor="red"
+              >
+                Failed
+              </Badge>
+            )}
+            <Box
+              color="gray.500"
+              fontWeight="semibold"
+              letterSpacing="wide"
+              fontSize="xs"
+              textTransform="uppercase"
+              ml="2"
+            >
+              {launch.rocket.rocket_name} &bull; {launch.launch_site.site_name}
+            </Box>
           </Box>
 
-          <ToggleFavoriteLaunchButton launch={launch} preventDefault/>
-
+          <ToggleFavoriteLaunchButton
+            launch={launch}
+            preventDefault
+          />
         </Box>
 
         <Box
