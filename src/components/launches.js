@@ -52,7 +52,7 @@ export default function Launches() {
   );
 }
 
-export function LaunchItem({ launch, compact }) {
+export function LaunchItem({ launch }) {
   return (
     <Box
       as={Link}
@@ -69,7 +69,7 @@ export function LaunchItem({ launch, compact }) {
           launch.links.mission_patch_small
         }
         alt={`${launch.mission_name} launch`}
-        height={compact ?  ["50px", null, "100px"] : ["200px", null, "300px"]}
+        height={["200px", null, "300px"]}
         width="100%"
         objectFit="cover"
         objectPosition="bottom"

@@ -132,6 +132,7 @@ function Header({ launch }) {
           </Badge>
         )}
       </Stack>
+
       <ToggleFavoriteLaunchButton launch={launch}/>
     </Flex>
   );

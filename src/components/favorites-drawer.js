@@ -1,4 +1,4 @@
-import React, { useState }            from "react";
+import React                          from "react";
 import {
   Badge,
   Box,
@@ -8,20 +8,16 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerOverlay, Image, Text, useDisclosure,
-} from "@chakra-ui/core";
+}                                     from "@chakra-ui/core";
 import { useFavoriteLaunches }        from "../utils/favorites-context";
 import { ToggleFavoriteLaunchButton } from "./toggle-favorite-flight-button";
 import { Link }                       from "react-router-dom";
 import { formatDate }                 from "../utils/format-date";
 
-export const FavoriteLaunchesDrawer = props => {
-  const {} = props;
+export const FavoriteLaunchesDrawer = () => {
   const { favoriteLaunches } = useFavoriteLaunches()
-
   const { isOpen, onOpen, onClose } = useDisclosure();
-
   const btnRef = React.useRef();
-
 
   return (
     <>
@@ -68,8 +64,6 @@ export const FavoriteLaunchesDrawer = props => {
                     variant="solid"
                   />
                 </Box>
-
-
                 <Link to={`/launches/${launch.flight_number.toString()}`}>
                   <Box
                     boxShadow="md"

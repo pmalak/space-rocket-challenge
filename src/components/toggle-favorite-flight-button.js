@@ -23,7 +23,6 @@ export const ToggleFavoriteLaunchButton = ({ launch, preventDefault, variant }) 
     <Box
       padding={"8px"}
     >
-
       <IconButton
         aria-label={`toggle flight ${launch.flightNumber}`}
         onClick={handleClick}

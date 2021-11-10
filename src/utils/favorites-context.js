@@ -14,7 +14,6 @@ export const FavoriteLaunchesContextProvider = ({ children }) => {
 
 
   const toggleLaunchFavoriteStatus = (launch) => {
-
     if (favoriteLaunches.map(favoriteLaunch => favoriteLaunch.flight_number).includes(launch.flight_number)) {
       const newValue = favoriteLaunches.filter(favoriteLaunch => favoriteLaunch.flight_number !== launch.flight_number)
       setFavoriteLaunches(newValue)
