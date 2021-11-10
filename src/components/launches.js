@@ -1,13 +1,13 @@
-import React from "react";
+import React                                         from "react";
 import { Badge, Box, Image, SimpleGrid, Text, Flex } from "@chakra-ui/core";
-import { format as timeAgo } from "timeago.js";
-import { Link } from "react-router-dom";
-
-import { useSpaceXPaginated } from "../utils/use-space-x";
-import { formatDate } from "../utils/format-date";
-import Error from "./error";
-import Breadcrumbs from "./breadcrumbs";
-import LoadMoreButton from "./load-more-button";
+import { format as timeAgo }                         from "timeago.js";
+import { Link }                                      from "react-router-dom";
+import { useSpaceXPaginated }                        from "../utils/use-space-x";
+import { formatDate }                                from "../utils/format-date";
+import Error                                         from "./error";
+import Breadcrumbs                                   from "./breadcrumbs";
+import LoadMoreButton                                from "./load-more-button";
+import { ToggleFavoriteLaunchButton }                from "./toggle-favorite-flight-button";
 
 const PAGE_SIZE = 12;
 
@@ -26,14 +26,21 @@ export default function Launches() {
       <Breadcrumbs
         items={[{ label: "Home", to: "/" }, { label: "Launches" }]}
       />
-      <SimpleGrid m={[2, null, 6]} minChildWidth="350px" spacing="4">
+      <SimpleGrid
+        m={[2, null, 6]}
+        minChildWidth="350px"
+        spacing="4"
+      >
         {error && <Error />}
         {data &&
-          data
-            .flat()
-            .map((launch) => (
-              <LaunchItem launch={launch} key={launch.flight_number} />
-            ))}
+        data
+          .flat()
+          .map((launch) => (
+            <LaunchItem
+              launch={launch}
+              key={launch.flight_number}
+            />
+          ))}
       </SimpleGrid>
       <LoadMoreButton
         loadMore={() => setSize(size + 1)}
@@ -78,14 +85,27 @@ export function LaunchItem({ launch }) {
         objectPosition="bottom"
       />
 
+
       <Box p="6">
-        <Box d="flex" alignItems="baseline">
+
+        <Box
+          d="flex"
+          alignItems="baseline"
+        >
           {launch.launch_success ? (
-            <Badge px="2" variant="solid" variantColor="green">
+            <Badge
+              px="2"
+              variant="solid"
+              variantColor="green"
+            >
               Successful
             </Badge>
           ) : (
-            <Badge px="2" variant="solid" variantColor="red">
+            <Badge
+              px="2"
+              variant="solid"
+              variantColor="red"
+            >
               Failed
             </Badge>
           )}
@@ -99,6 +119,9 @@ export function LaunchItem({ launch }) {
           >
             {launch.rocket.rocket_name} &bull; {launch.launch_site.site_name}
           </Box>
+
+          <ToggleFavoriteLaunchButton flightNumber={launch.flight_number} />
+
         </Box>
 
         <Box
@@ -112,7 +135,11 @@ export function LaunchItem({ launch }) {
         </Box>
         <Flex>
           <Text fontSize="sm">{formatDate(launch.launch_date_utc)} </Text>
-          <Text color="gray.500" ml="2" fontSize="sm">
+          <Text
+            color="gray.500"
+            ml="2"
+            fontSize="sm"
+          >
             {timeAgo(launch.launch_date_utc)}
           </Text>
         </Flex>
