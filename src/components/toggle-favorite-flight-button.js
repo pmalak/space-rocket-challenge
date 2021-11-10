@@ -1,32 +1,40 @@
-import { IconButton }          from "@chakra-ui/core";
+import { Box, IconButton }     from "@chakra-ui/core";
 import React                   from "react";
 import { useFavoriteLaunches } from "../utils/favorites-context";
 
 
-export const ToggleFavoriteLaunchButton = ({flightNumber}) => {
+export const ToggleFavoriteLaunchButton = ({ launch, preventDefault, variant }) => {
   const {
     toggleLaunchFavoriteStatus,
     favoriteLaunches,
   } = useFavoriteLaunches()
 
   const handleClick = (e) => {
-    e.preventDefault()
+    if (preventDefault) {
+      e.preventDefault()
+    }
 
-    toggleLaunchFavoriteStatus(flightNumber)
+    toggleLaunchFavoriteStatus(launch)
   }
 
-  const isFavorite = favoriteLaunches.includes(flightNumber)
+  const isFavorite = favoriteLaunches.map(favoriteLaunche => favoriteLaunche.flight_number).includes(launch.flight_number)
 
   return (
-    <IconButton
-      aria-label={`toggle flight ${flightNumber}`}
-      onClick={handleClick}
-      icon="star"
-      size="sm"
-      variant="outline"
-      variantColor={isFavorite? "yellow" : "grey.500"}
-      isRound
-    />
+    <Box
+      padding={"8px"}
+    >
+
+      <IconButton
+        aria-label={`toggle flight ${launch.flightNumber}`}
+        onClick={handleClick}
+        icon="star"
+        size="sm"
+        variant={variant || "outline"}
+        variantColor={isFavorite ? "yellow" : "grey"}
+        isRound
+        type="button"
+      />
+    </Box>
   );
 };
 

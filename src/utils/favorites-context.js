@@ -13,14 +13,14 @@ export const FavoriteLaunchesContextProvider = ({ children }) => {
   }, [favoriteLaunches])
 
 
-  const toggleLaunchFavoriteStatus = (flight_number) => {
+  const toggleLaunchFavoriteStatus = (launch) => {
 
-    if (favoriteLaunches.includes(flight_number)) {
-      const newValue = favoriteLaunches.filter(launches => launches !== flight_number)
+    if (favoriteLaunches.map(favoriteLaunch => favoriteLaunch.flight_number).includes(launch.flight_number)) {
+      const newValue = favoriteLaunches.filter(favoriteLaunch => favoriteLaunch.flight_number !== launch.flight_number)
       setFavoriteLaunches(newValue)
 
     } else {
-      setFavoriteLaunches(prevState => [...prevState, flight_number])
+      setFavoriteLaunches(prevState => [...prevState, launch])
     }
   }
 
