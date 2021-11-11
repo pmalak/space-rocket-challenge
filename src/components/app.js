@@ -8,8 +8,10 @@ import LaunchPads                 from "./launch-pads";
 import LaunchPad                  from "./launch-pad";
 import { useSpaceX }              from "../utils/use-space-x";
 import { getTimezonesBySiteName } from "../utils/getTImezonesBySiteName";
+import { FavoriteLaunchesDrawer } from "./favorites-drawer";
 
 export default function App() {
+
   const { data } = useSpaceX(
     "/launchpads",
   );
@@ -72,6 +74,8 @@ function NavBar() {
       >
         ¡SPACE·R0CKETS!
       </Text>
+
+      <FavoriteLaunchesDrawer/>
     </Flex>
   );
 }
