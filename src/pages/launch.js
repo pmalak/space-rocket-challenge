@@ -24,9 +24,9 @@ import {
 
 import { useSpaceX }                  from "../utils/use-space-x";
 import { formatDateTime }             from "../utils/format-date";
-import Error                          from "./error";
-import Breadcrumbs                    from "./breadcrumbs";
-import { ToggleFavoriteLaunchButton } from "./toggle-favorite-flight-button";
+import Error                          from "../components/error";
+import Breadcrumbs                    from "../components/breadcrumbs";
+import { ToggleFavoriteLaunchButton } from "../components/toggle-favorite-flight-button";
 
 
 export default function Launch() {

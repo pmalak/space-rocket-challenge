@@ -1,6 +1,6 @@
 import React, { useEffect }       from "react";
 import { Routes, Route }          from "react-router-dom";
-import { Flex, Text }             from "@chakra-ui/core";
+import { Box, Flex, Text }        from "@chakra-ui/core";
 import Launches                   from "./launches";
 import Launch                     from "./launch";
 import Home                       from "./home";
@@ -8,7 +8,7 @@ import LaunchPads                 from "./launch-pads";
 import LaunchPad                  from "./launch-pad";
 import { useSpaceX }              from "../utils/use-space-x";
 import { getTimezonesBySiteName } from "../utils/getTImezonesBySiteName";
-import { FavoriteLaunchesDrawer } from "./favorites-drawer";
+import { FavoriteLaunchesDrawer } from "../components/favorites-drawer";
 
 export default function App() {
 
@@ -29,28 +29,34 @@ export default function App() {
   return (
     <div>
       <NavBar />
-      <Routes>
-        <Route
-          path="/"
-          element={<Home />}
-        />
-        <Route
-          path="/launches"
-          element={<Launches />}
-        />
-        <Route
-          path="/launches/:launchId"
-          element={<Launch />}
-        />
-        <Route
-          path="/launch-pads"
-          element={<LaunchPads />}
-        />
-        <Route
-          path="/launch-pads/:launchPadId"
-          element={<LaunchPad />}
-        />
-      </Routes>
+      <Box
+        as="main"
+        mt="100px"
+      >
+
+        <Routes>
+          <Route
+            path="/"
+            element={<Home />}
+          />
+          <Route
+            path="/launches"
+            element={<Launches />}
+          />
+          <Route
+            path="/launches/:launchId"
+            element={<Launch />}
+          />
+          <Route
+            path="/launch-pads"
+            element={<LaunchPads />}
+          />
+          <Route
+            path="/launch-pads/:launchPadId"
+            element={<LaunchPad />}
+          />
+        </Routes>
+      </Box>
     </div>
   );
 }
@@ -58,7 +64,11 @@ export default function App() {
 function NavBar() {
   return (
     <Flex
-      as="nav"
+      as="header"
+      position="fixed"
+      w="100%"
+      top={0}
+      zIndex={2}
       align="center"
       justify="space-between"
       wrap="wrap"
@@ -75,7 +85,7 @@ function NavBar() {
         ¡SPACE·R0CKETS!
       </Text>
 
-      <FavoriteLaunchesDrawer/>
+      <FavoriteLaunchesDrawer />
     </Flex>
   );
 }
