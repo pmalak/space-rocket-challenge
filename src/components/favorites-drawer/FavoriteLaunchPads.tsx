@@ -2,8 +2,8 @@ import React, { FC } from "react";
 import { Badge, Box, Text }     from "@chakra-ui/core";
 import { Link }                 from "react-router-dom";
 import { ToggleFavoriteButton } from "../toggle-favorite-item-button";
-import { ItemTypeEnum }         from "../../utils/favorites-context";
 import { LaunchPad } from "../../types/launchpad";
+import { ItemTypeEnum } from "../../types";
 
 type Props = {
   launchPads: LaunchPad[]

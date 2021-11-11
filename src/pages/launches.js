@@ -7,8 +7,9 @@ import { formatDate }                                from "../utils/format-date"
 import Error                                         from "../components/error";
 import Breadcrumbs                                   from "../components/breadcrumbs";
 import LoadMoreButton                                from "../components/load-more-button";
-import { ToggleFavoriteButton } from "../components/toggle-favorite-item-button";
-import { ItemTypeEnum }         from "../utils/favorites-context";
+import { ToggleFavoriteButton }                      from "../components/toggle-favorite-item-button";
+import { ItemTypeEnum }                              from "../types";
+
 
 const PAGE_SIZE = 12;
 
@@ -21,7 +22,7 @@ export default function Launches() {
       sort: "launch_date_utc",
     }
   );
-  console.log(data, error);
+
   return (
     <div>
       <Breadcrumbs

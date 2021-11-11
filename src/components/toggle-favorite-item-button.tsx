@@ -1,6 +1,7 @@
 import { Box, IconButton, Tooltip } from "@chakra-ui/core";
 import React, { FC } from "react";
-import { ItemTypeEnum, idSlugsByType, useFavoriteLaunches, LaunchTuple } from "../utils/favorites-context";
+import { idSlugsByType, useFavoriteLaunches } from "../utils/favorites-context";
+import { ItemTypeEnum, LaunchTuple } from "../types";
 
 type Props = {
   item: LaunchTuple

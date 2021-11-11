@@ -7,7 +7,8 @@ import Breadcrumbs              from "../components/breadcrumbs";
 import LoadMoreButton           from "../components/load-more-button";
 import { useSpaceXPaginated }   from "../utils/use-space-x";
 import { ToggleFavoriteButton } from "../components/toggle-favorite-item-button";
-import { ItemTypeEnum }         from "../utils/favorites-context";
+import { ItemTypeEnum }         from "../types";
+
 
 const PAGE_SIZE = 12;
 

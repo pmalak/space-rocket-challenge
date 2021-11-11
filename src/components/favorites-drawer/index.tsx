@@ -7,9 +7,10 @@ import {
   DrawerHeader,
   DrawerOverlay, useDisclosure,
 }                                                 from "@chakra-ui/core";
-import { ItemTypeEnum, useFavoriteLaunches } from "../../utils/favorites-context";
+import { useFavoriteLaunches } from "../../utils/favorites-context";
 import { FavoriteLaunches }                       from "./FavoriteLaunches";
 import { FavoriteLaunchPads }                     from "./FavoriteLaunchPads";
+import { ItemTypeEnum } from "../../types";
 
 export const FavoriteLaunchesDrawer = () => {
   const { favoriteItems } = useFavoriteLaunches()

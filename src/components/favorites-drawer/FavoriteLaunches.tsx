@@ -1,10 +1,11 @@
 import React, { FC } from "react";
 import { Badge, Box, Image, Text } from "@chakra-ui/core";
 import { ToggleFavoriteButton } from "../toggle-favorite-item-button";
-import { ItemTypeEnum } from "../../utils/favorites-context";
+
 import { Link } from "react-router-dom";
 import { formatDate } from "../../utils/format-date";
 import { Launch } from "../../types/launch";
+import { ItemTypeEnum } from "../../types";
 
 type Props = {
   launches: Launch[]

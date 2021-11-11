@@ -1,20 +1,7 @@
 import React, { FC, useContext, useEffect, useState } from "react";
-import { Launch } from "../types/launch";
-import { LaunchPad } from "../types/launchpad";
-
-export type LaunchTuple = Launch | LaunchPad
-
-export type FavoriteItems = {
-  launch: Launch[],
-  launchPad: LaunchPad[]
-}
+import { FavoriteItems, ItemTypeEnum, LaunchTuple } from "../types";
 
 const localStorageKey = "favoriteItems"
-
-export enum ItemTypeEnum {
-  Launch = "launch",
-  LaunchPad = "launchPad"
-}
 
 export const idSlugsByType = {
   [ItemTypeEnum.Launch]: "flight_number",

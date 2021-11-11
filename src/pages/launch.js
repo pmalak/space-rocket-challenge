@@ -27,7 +27,8 @@ import { formatDateTime }       from "../utils/format-date";
 import Error                    from "../components/error";
 import Breadcrumbs              from "../components/breadcrumbs";
 import { ToggleFavoriteButton } from "../components/toggle-favorite-item-button";
-import { ItemTypeEnum }         from "../utils/favorites-context";
+import { ItemTypeEnum }         from "../types";
+
 
 
 export default function Launch() {
@@ -75,7 +76,7 @@ export default function Launch() {
 }
 
 function Header({ launch }) {
-  console.log("launch", launch)
+
   return (
     <Flex
       bgImage={`url(${launch.links.flickr_images[0]})`}
