@@ -9,10 +9,10 @@ import {
   DrawerHeader,
   DrawerOverlay, Image, Text, useDisclosure,
 }                                                 from "@chakra-ui/core";
-import { favoriteItemTypes, useFavoriteLaunches } from "../utils/favorites-context";
-import { ToggleFavoriteButton }                   from "./toggle-favorite-flight-button";
+import { favoriteItemTypes, useFavoriteLaunches } from "../../utils/favorites-context";
+import { ToggleFavoriteButton }                   from "../toggle-favorite-item-button";
 import { Link }                                   from "react-router-dom";
-import { formatDate }                 from "../utils/format-date";
+import { formatDate }                             from "../../utils/format-date";
 
 export const FavoriteLaunchesDrawer = () => {
   const { favoriteItems } = useFavoriteLaunches()
