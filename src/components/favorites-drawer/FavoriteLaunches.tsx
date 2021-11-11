@@ -4,7 +4,7 @@ import { ToggleFavoriteButton } from "../toggle-favorite-item-button";
 import { ItemTypeEnum } from "../../utils/favorites-context";
 import { Link } from "react-router-dom";
 import { formatDate } from "../../utils/format-date";
-import { Launch } from "../../../types/launch";
+import { Launch } from "../../types/launch";
 
 type Props = {
   launches: Launch[]

@@ -1,7 +1,6 @@
 import { Box, IconButton, Tooltip } from "@chakra-ui/core";
-import React, { FC, MouseEventHandler } from "react";
+import React, { FC } from "react";
 import { ItemTypeEnum, idSlugsByType, useFavoriteLaunches, LaunchTuple } from "../utils/favorites-context";
-import { IconButtonProps } from "@chakra-ui/core/dist/IconButton";
 
 type Props = {
   item: LaunchTuple
@@ -17,7 +16,7 @@ export const ToggleFavoriteButton: FC<Props> = ({ item, toggleItemType, preventD
     favoriteItems,
   } = useFavoriteLaunches()
 
-  const handleClick: MouseEventHandler = (event): void => {
+  const handleClick: React.MouseEventHandler = (event): void => {
     if (preventDefault) {
       event.preventDefault()
     }
@@ -27,8 +26,9 @@ export const ToggleFavoriteButton: FC<Props> = ({ item, toggleItemType, preventD
 
   const favoriteItemsOfType: LaunchTuple[] = favoriteItems[toggleItemType]
 
+// FIXME: remove @ts-ignored errors
   const isFavorite = favoriteItemsOfType.map(favoriteItem => {
-  // @ts-ignore
+    // @ts-ignore
     return favoriteItem[idSlugsByType[toggleItemType]]
     // @ts-ignore
   }).includes(item[idSlugsByType[toggleItemType]])

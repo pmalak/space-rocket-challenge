@@ -1,6 +1,6 @@
 import React, { FC, useContext, useEffect, useState } from "react";
-import { Launch } from "../../types/launch";
-import { LaunchPad } from "../../types/launchpad";
+import { Launch } from "../types/launch";
+import { LaunchPad } from "../types/launchpad";
 
 export type LaunchTuple = Launch | LaunchPad
 
@@ -51,7 +51,7 @@ export const FavoriteLaunchesContextProvider: FC = ({ children }) => {
     localStorage.setItem(localStorageKey, JSON.stringify(favoriteItems))
   }, [favoriteItems])
 
-
+  // FIXME: remove @ts-ignored errors
   const toggleLaunchFavoriteStatus = (item: LaunchTuple, type: ItemTypeEnum) => {
     if (favoriteItems[type]
       // @ts-ignore
