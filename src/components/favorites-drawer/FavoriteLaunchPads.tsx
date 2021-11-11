@@ -1,11 +1,14 @@
-import React                    from "react";
+import React, { FC } from "react";
 import { Badge, Box, Text }     from "@chakra-ui/core";
 import { Link }                 from "react-router-dom";
 import { ToggleFavoriteButton } from "../toggle-favorite-item-button";
-import { favoriteItemTypes }    from "../../utils/favorites-context";
+import { ItemTypeEnum }         from "../../utils/favorites-context";
+import { LaunchPad } from "../../../types/launchpad";
 
-
-export const FavoriteLaunchPads = ({ launchPads }) => {
+type Props = {
+  launchPads: LaunchPad[]
+}
+export const FavoriteLaunchPads: FC<Props> = ({ launchPads }) => {
 
     return (
       <>
@@ -30,7 +33,7 @@ export const FavoriteLaunchPads = ({ launchPads }) => {
 
                 <ToggleFavoriteButton
                   item={launchPad}
-                  type={favoriteItemTypes.launchPad}
+                  toggleItemType={ItemTypeEnum.LaunchPad}
                   variant="solid"
                 />
 

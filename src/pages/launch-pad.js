@@ -22,7 +22,7 @@ import Error                    from "../components/error";
 import Breadcrumbs              from "../components/breadcrumbs";
 import { LaunchItem }           from "./launches";
 import { ToggleFavoriteButton } from "../components/toggle-favorite-item-button";
-import { favoriteItemTypes }    from "../utils/favorites-context";
+import { ItemTypeEnum }         from "../utils/favorites-context";
 
 export default function LaunchPad() {
   let { launchPadId } = useParams();
@@ -70,6 +70,7 @@ const randomColor = (start = 200, end = 250) =>
   `hsl(${start + end * Math.random()}, 80%, 90%)`;
 
 function Header({ launchPad }) {
+  console.log("launchPad", launchPad)
   return (
     <Flex
       background={`linear-gradient(${randomColor()}, ${randomColor()})`}
@@ -100,7 +101,7 @@ function Header({ launchPad }) {
 
         <ToggleFavoriteButton
           item={launchPad}
-          type={favoriteItemTypes.launchPad}
+          toggleItemType={ItemTypeEnum.LaunchPad}
           variant="solid"
           size="md"
         />

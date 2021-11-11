@@ -7,7 +7,7 @@ import Breadcrumbs              from "../components/breadcrumbs";
 import LoadMoreButton           from "../components/load-more-button";
 import { useSpaceXPaginated }   from "../utils/use-space-x";
 import { ToggleFavoriteButton } from "../components/toggle-favorite-item-button";
-import { favoriteItemTypes }    from "../utils/favorites-context";
+import { ItemTypeEnum }         from "../utils/favorites-context";
 
 const PAGE_SIZE = 12;
 
@@ -105,7 +105,7 @@ function LaunchPadItem({ launchPad }) {
 
           <ToggleFavoriteButton
             item={launchPad}
-            type={favoriteItemTypes.launchPad}
+            toggleItemType={ItemTypeEnum.LaunchPad}
             preventDefault
           />
         </Box>

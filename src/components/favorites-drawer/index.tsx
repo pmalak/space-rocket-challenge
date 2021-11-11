@@ -7,7 +7,7 @@ import {
   DrawerHeader,
   DrawerOverlay, useDisclosure,
 }                                                 from "@chakra-ui/core";
-import { favoriteItemTypes, useFavoriteLaunches } from "../../utils/favorites-context";
+import { ItemTypeEnum, useFavoriteLaunches } from "../../utils/favorites-context";
 import { FavoriteLaunches }                       from "./FavoriteLaunches";
 import { FavoriteLaunchPads }                     from "./FavoriteLaunchPads";
 
@@ -16,8 +16,8 @@ export const FavoriteLaunchesDrawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
 
-  const favoriteLaunches = favoriteItems[favoriteItemTypes.launch]
-  const favoriteLaunchPads = favoriteItems[favoriteItemTypes.launchPad]
+  const favoriteLaunches = favoriteItems[ItemTypeEnum.Launch]
+  const favoriteLaunchPads = favoriteItems[ItemTypeEnum.LaunchPad]
 
   return (
     <>
@@ -36,8 +36,6 @@ export const FavoriteLaunchesDrawer = () => {
         placement="right"
         onClose={onClose}
         returnFocusOnClose={false}
-        finalFocusRef={btnRef}
-
       >
         <DrawerOverlay />
 
