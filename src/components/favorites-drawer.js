@@ -47,11 +47,17 @@ export const FavoriteLaunchesDrawer = () => {
           <DrawerHeader>Favorites</DrawerHeader>
 
           <DrawerBody overflowY={"scroll"}>
-            <Text fontSize="md" marginBottom={2}>Launches ({favoriteLaunches.length})</Text>
+            <Text
+              fontSize="md"
+              marginBottom={2}
+            >Launches ({favoriteLaunches.length})</Text>
 
             {favoriteLaunches.map(launch =>
 
-              <Box position={"relative"}>
+              <Box
+                position={"relative"}
+                key={launch.flight_number}
+              >
                 <Box
                   position={"absolute"}
                   top={0}
@@ -139,10 +145,7 @@ export const FavoriteLaunchesDrawer = () => {
                 </Link>
               </Box>)
             }
-
           </DrawerBody>
-
-
         </DrawerContent>
       </Drawer>
     </>
