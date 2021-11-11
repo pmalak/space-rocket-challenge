@@ -23,7 +23,10 @@ export const useFavoriteLaunches = () => useContext(FavoriteLaunchesContext);
 
 export const FavoriteLaunchesContextProvider = ({ children }) => {
 
-  const [favoriteItems, setFavoriteItems] = useState(JSON.parse(localStorage.getItem(localStorageKey)) || defaultValue)
+  const [favoriteItems, setFavoriteItems] = useState(JSON.parse(
+      localStorage.getItem(localStorageKey))
+    || defaultValue
+  )
 
   useEffect(() => {
     localStorage.setItem(localStorageKey, JSON.stringify(favoriteItems))
@@ -34,7 +37,9 @@ export const FavoriteLaunchesContextProvider = ({ children }) => {
       .map(favoriteItem => favoriteItem[idSlugsByType[type]])
       .includes(item[idSlugsByType[type]])
     ) {
-      const newValue = favoriteItems[type].filter(favoriteItem => favoriteItem[idSlugsByType[type]] !== item[idSlugsByType[type]])
+      const newValue = favoriteItems[type].filter(favoriteItem => {
+        return favoriteItem[idSlugsByType[type]] !== item[idSlugsByType[type]]
+      })
 
       setFavoriteItems({
         ...favoriteItems,

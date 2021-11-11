@@ -1,18 +1,15 @@
-import React                          from "react";
+import React                                      from "react";
 import {
-  Badge,
-  Box,
   Button,
   Drawer, DrawerBody,
   DrawerCloseButton,
   DrawerContent,
   DrawerHeader,
-  DrawerOverlay, Image, Text, useDisclosure,
+  DrawerOverlay, useDisclosure,
 }                                                 from "@chakra-ui/core";
 import { favoriteItemTypes, useFavoriteLaunches } from "../../utils/favorites-context";
-import { ToggleFavoriteButton }                   from "../toggle-favorite-item-button";
-import { Link }                                   from "react-router-dom";
-import { formatDate }                             from "../../utils/format-date";
+import { FavoriteLaunches }                       from "./FavoriteLaunches";
+import { FavoriteLaunchPads }                     from "./FavoriteLaunchPads";
 
 export const FavoriteLaunchesDrawer = () => {
   const { favoriteItems } = useFavoriteLaunches()
@@ -20,6 +17,7 @@ export const FavoriteLaunchesDrawer = () => {
   const btnRef = React.useRef();
 
   const favoriteLaunches = favoriteItems[favoriteItemTypes.launch]
+  const favoriteLaunchPads = favoriteItems[favoriteItemTypes.launchPad]
 
   return (
     <>
@@ -49,105 +47,9 @@ export const FavoriteLaunchesDrawer = () => {
           <DrawerHeader>Favorites</DrawerHeader>
 
           <DrawerBody overflowY={"scroll"}>
-            <Text
-              fontSize="md"
-              marginBottom={2}
-            >Launches ({favoriteLaunches.length})</Text>
+            <FavoriteLaunchPads launchPads={favoriteLaunchPads} />
+            <FavoriteLaunches launches={favoriteLaunches} />
 
-            {favoriteLaunches.map(launch =>
-
-              <Box
-                position={"relative"}
-                key={launch.flight_number}
-              >
-                <Box
-                  position={"absolute"}
-                  top={0}
-                  right={0}
-                  zIndex={20}
-                >
-
-                  <ToggleFavoriteButton
-                    item={launch}
-                    type={favoriteItemTypes.launch}
-                    variant="solid"
-                  />
-                </Box>
-                <Link to={`/launches/${launch.flight_number.toString()}`}>
-                  <Box
-                    boxShadow="md"
-                    borderWidth="1px"
-                    rounded="lg"
-                    overflow="hidden"
-                    position="relative"
-                    marginBottom={2}
-                  >
-                    <Image
-                      src={
-                        launch.links.flickr_images[0]?.replace("_o.jpg", "_z.jpg") ??
-                        launch.links.mission_patch_small
-                      }
-                      alt={`${launch.mission_name} launch`}
-                      height={["50px", null, "100px"]}
-                      width="100%"
-                      objectFit="cover"
-                      objectPosition="bottom"
-                    />
-
-                    <Image
-                      position="absolute"
-                      top="5"
-                      right="5"
-                      src={launch.links.mission_patch_small}
-                      height="75px"
-                      objectFit="contain"
-                      objectPosition="bottom"
-                    />
-
-
-                    <Box p="3">
-
-                      <Box
-                        d="flex"
-                        alignItems="baseline"
-                      >
-                        {launch.launch_success ? (
-                          <Badge
-                            px="2"
-                            variant="solid"
-                            variantColor="green"
-                          >
-                            Successful
-                          </Badge>
-                        ) : (
-                          <Badge
-                            px="2"
-                            variant="solid"
-                            variantColor="red"
-                          >
-                            Failed
-                          </Badge>
-                        )}
-                      </Box>
-
-                      <Box
-                        mt="1"
-                        fontWeight="semibold"
-                        as="h4"
-                        lineHeight="tight"
-                        isTruncated
-                      >
-                        {launch.mission_name}
-                      </Box>
-
-
-                      <Text fontSize="sm">{formatDate(launch.launch_date_utc)} </Text>
-
-                    </Box>
-                  </Box>
-                </Link>
-              </Box>)
-            }
           </DrawerBody>
         </DrawerContent>
       </Drawer>

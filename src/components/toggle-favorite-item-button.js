@@ -1,9 +1,9 @@
-import { Box, IconButton, Tooltip } from "@chakra-ui/core";
-import React                                      from "react";
-import { favoriteItemTypes, useFavoriteLaunches } from "../utils/favorites-context";
+import { Box, IconButton, Tooltip }                              from "@chakra-ui/core";
+import React                                                     from "react";
+import { favoriteItemTypes, idSlugsByType, useFavoriteLaunches } from "../utils/favorites-context";
 
 
-export const ToggleFavoriteButton = ({ item, type,  preventDefault, variant, size }) => {
+export const ToggleFavoriteButton = ({ item, type, preventDefault, variant, size }) => {
   const {
     toggleLaunchFavoriteStatus,
     favoriteItems,
@@ -16,14 +16,12 @@ export const ToggleFavoriteButton = ({ item, type,  preventDefault, variant, siz
 
     toggleLaunchFavoriteStatus(item, type)
   }
-  console.log("type", type)
-
-  console.log("favoriteItems", favoriteItems)
 
   const favoriteItemsOfType = favoriteItems[type]
-  console.log("favoriteItemsOfType", favoriteItemsOfType)
 
-  const isFavorite = favoriteItemsOfType.map(favoriteItem => favoriteItem.flight_number).includes(item.flight_number)
+  const isFavorite = favoriteItemsOfType.map(favoriteItem => {
+    return favoriteItem[idSlugsByType[type]]
+  }).includes(item[idSlugsByType[type]])
   const label = isFavorite ? "remove from favorites" : "add to favorites"
 
   return (

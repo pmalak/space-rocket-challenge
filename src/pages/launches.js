@@ -7,7 +7,7 @@ import { formatDate }                                from "../utils/format-date"
 import Error                                         from "../components/error";
 import Breadcrumbs                                   from "../components/breadcrumbs";
 import LoadMoreButton                                from "../components/load-more-button";
-import { ToggleFavoriteButton }                      from "../components/toggle-favorite-flight-button";
+import { ToggleFavoriteButton }                      from "../components/toggle-favorite-item-button";
 import { favoriteItemTypes }                         from "../utils/favorites-context";
 
 const PAGE_SIZE = 12;

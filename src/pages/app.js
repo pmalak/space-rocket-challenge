@@ -8,23 +8,24 @@ import LaunchPads                 from "./launch-pads";
 import LaunchPad                  from "./launch-pad";
 import { useSpaceX }              from "../utils/use-space-x";
 import { getTimezonesBySiteName } from "../utils/getTImezonesBySiteName";
-import { FavoriteLaunchesDrawer } from "../components/favorites-drawer";
+import { FavoriteLaunchesDrawer } from "../components/favorites-drawer/index";
 
 export default function App() {
 
-  const { data } = useSpaceX(
-    "/launchpads",
-  );
-
-  useEffect(() => {
-    const getter = async () => {
-      if (data) {
-        const timezonesBySiteName = await getTimezonesBySiteName(data)
-        console.log("timezonesBySiteName", timezonesBySiteName)
-      }
-    }
-    getter()
-  }, [data])
+  // call this to get new timezones
+  // const { data } = useSpaceX(
+  //   "/launchpads",
+  // );
+  //
+  // useEffect(() => {
+  //   const getter = async () => {
+  //     if (data) {
+  //       const timezonesBySiteName = await getTimezonesBySiteName(data)
+  //       console.log("timezonesBySiteName", timezonesBySiteName)
+  //     }
+  //   }
+  //   getter()
+  // }, [data])
 
   return (
     <div>

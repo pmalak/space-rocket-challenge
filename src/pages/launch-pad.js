@@ -17,10 +17,12 @@ import {
   AspectRatioBox,
 } from "@chakra-ui/core";
 
-import { useSpaceX }  from "../utils/use-space-x";
-import Error          from "../components/error";
-import Breadcrumbs    from "../components/breadcrumbs";
-import { LaunchItem } from "./launches";
+import { useSpaceX }            from "../utils/use-space-x";
+import Error                    from "../components/error";
+import Breadcrumbs              from "../components/breadcrumbs";
+import { LaunchItem }           from "./launches";
+import { ToggleFavoriteButton } from "../components/toggle-favorite-item-button";
+import { favoriteItemTypes }    from "../utils/favorites-context";
 
 export default function LaunchPad() {
   let { launchPadId } = useParams();
@@ -81,16 +83,30 @@ function Header({ launchPad }) {
       alignItems="flex-end"
       justifyContent="space-between"
     >
-      <Heading
-        color="gray.900"
-        display="inline"
-        mx={[2, 4]}
-        my="2"
-        fontSize={["md", "3xl"]}
-        borderRadius="lg"
+      <Box
+        d="flex"
+        alignItems="center"
       >
-        {launchPad.site_name_long}
-      </Heading>
+        <Heading
+          color="gray.900"
+          display="inline"
+          mx={[2, 4]}
+          my="2"
+          fontSize={["md", "3xl"]}
+          borderRadius="lg"
+        >
+          {launchPad.site_name_long}
+        </Heading>
+
+        <ToggleFavoriteButton
+          item={launchPad}
+          type={favoriteItemTypes.launchPad}
+          variant="solid"
+          size="md"
+        />
+      </Box>
+
+
       <Stack isInline spacing="3">
         <Badge variantColor="purple" fontSize={["sm", "md"]}>
           {launchPad.successful_launches}/{launchPad.attempted_launches}{" "}

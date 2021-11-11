@@ -1,11 +1,13 @@
-import React from "react";
+import React                            from "react";
 import { Badge, Box, SimpleGrid, Text } from "@chakra-ui/core";
-import { Link } from "react-router-dom";
+import { Link }                         from "react-router-dom";
 
-import Error                  from "../components/error";
-import Breadcrumbs            from "../components/breadcrumbs";
-import LoadMoreButton         from "../components/load-more-button";
-import { useSpaceXPaginated } from "../utils/use-space-x";
+import Error                    from "../components/error";
+import Breadcrumbs              from "../components/breadcrumbs";
+import LoadMoreButton           from "../components/load-more-button";
+import { useSpaceXPaginated }   from "../utils/use-space-x";
+import { ToggleFavoriteButton } from "../components/toggle-favorite-item-button";
+import { favoriteItemTypes }    from "../utils/favorites-context";
 
 const PAGE_SIZE = 12;
 
@@ -22,14 +24,21 @@ export default function LaunchPads() {
       <Breadcrumbs
         items={[{ label: "Home", to: "/" }, { label: "Launch Pads" }]}
       />
-      <SimpleGrid m={[2, null, 6]} minChildWidth="350px" spacing="4">
+      <SimpleGrid
+        m={[2, null, 6]}
+        minChildWidth="350px"
+        spacing="4"
+      >
         {error && <Error />}
         {data &&
-          data
-            .flat()
-            .map((launchPad) => (
-              <LaunchPadItem key={launchPad.site_id} launchPad={launchPad} />
-            ))}
+        data
+          .flat()
+          .map((launchPad) => (
+            <LaunchPadItem
+              key={launchPad.site_id}
+              launchPad={launchPad}
+            />
+          ))}
       </SimpleGrid>
       <LoadMoreButton
         loadMore={() => setSize(size + 1)}
@@ -53,27 +62,52 @@ function LaunchPadItem({ launchPad }) {
       position="relative"
     >
       <Box p="6">
-        <Box d="flex" alignItems="baseline">
-          {launchPad.status === "active" ? (
-            <Badge px="2" variant="solid" variantColor="green">
-              Active
-            </Badge>
-          ) : (
-            <Badge px="2" variant="solid" variantColor="red">
-              Retired
-            </Badge>
-          )}
+        <Box
+          d="flex"
+          justifyContent="space-between"
+          alignItems="baseline"
+        >
           <Box
-            color="gray.500"
-            fontWeight="semibold"
-            letterSpacing="wide"
-            fontSize="xs"
-            textTransform="uppercase"
-            ml="2"
+            d="flex"
+            alignItems="baseline"
           >
-            {launchPad.attempted_launches} attempted &bull;{" "}
-            {launchPad.successful_launches} succeeded
+            {launchPad.status === "active" ? (
+              <Badge
+                px="2"
+                variant="solid"
+                variantColor="green"
+              >
+                Active
+              </Badge>
+            ) : (
+              <Badge
+                px="2"
+                variant="solid"
+                variantColor="red"
+              >
+                Retired
+              </Badge>
+            )}
+            <Box
+              color="gray.500"
+              fontWeight="semibold"
+              letterSpacing="wide"
+              fontSize="xs"
+              textTransform="uppercase"
+              ml="2"
+            >
+              {launchPad.attempted_launches} attempted &bull;{" "}
+              {launchPad.successful_launches} succeeded
+            </Box>
+
+
           </Box>
+
+          <ToggleFavoriteButton
+            item={launchPad}
+            type={favoriteItemTypes.launchPad}
+            preventDefault
+          />
         </Box>
 
         <Box
@@ -85,7 +119,10 @@ function LaunchPadItem({ launchPad }) {
         >
           {launchPad.name}
         </Box>
-        <Text color="gray.500" fontSize="sm">
+        <Text
+          color="gray.500"
+          fontSize="sm"
+        >
           {launchPad.vehicles_launched.join(", ")}
         </Text>
       </Box>
