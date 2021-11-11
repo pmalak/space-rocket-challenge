@@ -1,12 +1,12 @@
 import { Box, IconButton, Tooltip } from "@chakra-ui/core";
-import React                        from "react";
-import { useFavoriteLaunches }      from "../utils/favorites-context";
+import React                                      from "react";
+import { favoriteItemTypes, useFavoriteLaunches } from "../utils/favorites-context";
 
 
-export const ToggleFavoriteLaunchButton = ({ launch, preventDefault, variant, size }) => {
+export const ToggleFavoriteButton = ({ item, type,  preventDefault, variant, size }) => {
   const {
     toggleLaunchFavoriteStatus,
-    favoriteLaunches,
+    favoriteItems,
   } = useFavoriteLaunches()
 
   const handleClick = (e) => {
@@ -14,10 +14,16 @@ export const ToggleFavoriteLaunchButton = ({ launch, preventDefault, variant, si
       e.preventDefault()
     }
 
-    toggleLaunchFavoriteStatus(launch)
+    toggleLaunchFavoriteStatus(item, type)
   }
+  console.log("type", type)
 
-  const isFavorite = favoriteLaunches.map(favoriteLaunche => favoriteLaunche.flight_number).includes(launch.flight_number)
+  console.log("favoriteItems", favoriteItems)
+
+  const favoriteItemsOfType = favoriteItems[type]
+  console.log("favoriteItemsOfType", favoriteItemsOfType)
+
+  const isFavorite = favoriteItemsOfType.map(favoriteItem => favoriteItem.flight_number).includes(item.flight_number)
   const label = isFavorite ? "remove from favorites" : "add to favorites"
 
   return (
@@ -28,7 +34,7 @@ export const ToggleFavoriteLaunchButton = ({ launch, preventDefault, variant, si
       >
 
         <IconButton
-          aria-label={`toggle flight ${launch.flightNumber}`}
+          aria-label={`toggle flight ${item.flightNumber}`}
           onClick={handleClick}
           icon="star"
           size={size || "sm"}

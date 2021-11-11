@@ -11,6 +11,7 @@ ReactDOM.render(
     <Router>
       <ThemeProvider>
         <CSSReset />
+
         <FavoriteLaunchesContextProvider>
           <App />
         </FavoriteLaunchesContextProvider>

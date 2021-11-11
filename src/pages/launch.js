@@ -22,11 +22,12 @@ import {
   Tooltip
 }                                            from "@chakra-ui/core";
 
-import { useSpaceX }                  from "../utils/use-space-x";
-import { formatDateTime }             from "../utils/format-date";
-import Error                          from "../components/error";
-import Breadcrumbs                    from "../components/breadcrumbs";
-import { ToggleFavoriteLaunchButton } from "../components/toggle-favorite-flight-button";
+import { useSpaceX }            from "../utils/use-space-x";
+import { formatDateTime }       from "../utils/format-date";
+import Error                    from "../components/error";
+import Breadcrumbs              from "../components/breadcrumbs";
+import { ToggleFavoriteButton } from "../components/toggle-favorite-flight-button";
+import { favoriteItemTypes }    from "../utils/favorites-context";
 
 
 export default function Launch() {
@@ -111,8 +112,9 @@ function Header({ launch }) {
           {launch.mission_name}
         </Heading>
 
-        <ToggleFavoriteLaunchButton
-          launch={launch}
+        <ToggleFavoriteButton
+          item={launch}
+          type={favoriteItemTypes.launch}
           variant="solid"
           size="md"
         />

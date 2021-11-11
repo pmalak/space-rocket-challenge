@@ -1,13 +1,14 @@
-import React from "react";
+import React                                         from "react";
 import { Badge, Box, Image, SimpleGrid, Text, Flex } from "@chakra-ui/core";
-import { format as timeAgo } from "timeago.js";
-import { Link }                       from "react-router-dom";
-import { useSpaceXPaginated }         from "../utils/use-space-x";
-import { formatDate }                 from "../utils/format-date";
-import Error                          from "../components/error";
-import Breadcrumbs                    from "../components/breadcrumbs";
-import LoadMoreButton                 from "../components/load-more-button";
-import { ToggleFavoriteLaunchButton } from "../components/toggle-favorite-flight-button";
+import { format as timeAgo }                         from "timeago.js";
+import { Link }                                      from "react-router-dom";
+import { useSpaceXPaginated }                        from "../utils/use-space-x";
+import { formatDate }                                from "../utils/format-date";
+import Error                                         from "../components/error";
+import Breadcrumbs                                   from "../components/breadcrumbs";
+import LoadMoreButton                                from "../components/load-more-button";
+import { ToggleFavoriteButton }                      from "../components/toggle-favorite-flight-button";
+import { favoriteItemTypes }                         from "../utils/favorites-context";
 
 const PAGE_SIZE = 12;
 
@@ -125,8 +126,9 @@ export function LaunchItem({ launch }) {
             </Box>
           </Box>
 
-          <ToggleFavoriteLaunchButton
-            launch={launch}
+          <ToggleFavoriteButton
+            item={launch}
+            type={favoriteItemTypes.launch}
             preventDefault
           />
         </Box>

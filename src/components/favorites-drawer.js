@@ -8,16 +8,18 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerOverlay, Image, Text, useDisclosure,
-}                                     from "@chakra-ui/core";
-import { useFavoriteLaunches }        from "../utils/favorites-context";
-import { ToggleFavoriteLaunchButton } from "./toggle-favorite-flight-button";
-import { Link }                       from "react-router-dom";
+}                                                 from "@chakra-ui/core";
+import { favoriteItemTypes, useFavoriteLaunches } from "../utils/favorites-context";
+import { ToggleFavoriteButton }                   from "./toggle-favorite-flight-button";
+import { Link }                                   from "react-router-dom";
 import { formatDate }                 from "../utils/format-date";
 
 export const FavoriteLaunchesDrawer = () => {
-  const { favoriteLaunches } = useFavoriteLaunches()
+  const { favoriteItems } = useFavoriteLaunches()
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
+
+  const favoriteLaunches = favoriteItems[favoriteItemTypes.launch]
 
   return (
     <>
@@ -65,8 +67,9 @@ export const FavoriteLaunchesDrawer = () => {
                   zIndex={20}
                 >
 
-                  <ToggleFavoriteLaunchButton
-                    launch={launch}
+                  <ToggleFavoriteButton
+                    item={launch}
+                    type={favoriteItemTypes.launch}
                     variant="solid"
                   />
                 </Box>
