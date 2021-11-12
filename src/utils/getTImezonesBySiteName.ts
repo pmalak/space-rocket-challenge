@@ -1,6 +1,15 @@
-const googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY
+import { LaunchPad } from "../types/launchpad";
 
-export const getTimezonesBySiteName = async (launchPads) => {
+const googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY
+type GetTimezonesBySiteName = (launchPads: LaunchPad[]) => Promise<{
+  [key: string]: {
+    timeZoneId: number,
+    timeZoneName: string
+  }
+} | undefined>
+
+
+export const getTimezonesBySiteName: GetTimezonesBySiteName = async (launchPads) => {
 
   try {
     const responses = await Promise.all(launchPads.map(async launchPad => {

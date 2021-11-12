@@ -1,6 +1,6 @@
-import React                                 from "react";
-import { useParams, Link as RouterLink }     from "react-router-dom";
-import { format as timeAgo }                 from "timeago.js";
+import React from "react";
+import { useParams, Link as RouterLink } from "react-router-dom";
+import { format as timeAgo } from "timeago.js";
 import { Watch, MapPin, Navigation, Layers } from "react-feather";
 import {
   Flex,
@@ -20,13 +20,13 @@ import {
   AspectRatioBox,
   StatGroup,
   Tooltip
-}                                            from "@chakra-ui/core";
-
-import { useSpaceX }                  from "../utils/use-space-x";
-import { formatDateTime }             from "../utils/format-date";
-import Error                          from "./error";
-import Breadcrumbs                    from "./breadcrumbs";
-import { ToggleFavoriteLaunchButton } from "./toggle-favorite-flight-button";
+} from "@chakra-ui/core";
+import { useSpaceX } from "../utils/use-space-x";
+import { formatDateTime } from "../utils/format-date";
+import Error from "../components/error";
+import Breadcrumbs from "../components/breadcrumbs";
+import { ToggleFavoriteButton } from "../components/toggle-favorite-item-button";
+import { ItemTypeEnum } from "../types";
 
 
 export default function Launch() {
@@ -74,6 +74,7 @@ export default function Launch() {
 }
 
 function Header({ launch }) {
+
   return (
     <Flex
       bgImage={`url(${launch.links.flickr_images[0]})`}
@@ -111,8 +112,9 @@ function Header({ launch }) {
           {launch.mission_name}
         </Heading>
 
-        <ToggleFavoriteLaunchButton
-          launch={launch}
+        <ToggleFavoriteButton
+          item={launch}
+          toggleItemType={ItemTypeEnum.Launch}
           variant="solid"
           size="md"
         />

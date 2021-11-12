@@ -4,10 +4,12 @@ import { format as timeAgo } from "timeago.js";
 import { Link } from "react-router-dom";
 import { useSpaceXPaginated } from "../utils/use-space-x";
 import { formatDate } from "../utils/format-date";
-import Error from "./error";
-import Breadcrumbs from "./breadcrumbs";
-import LoadMoreButton from "./load-more-button";
-import { ToggleFavoriteLaunchButton } from "./toggle-favorite-flight-button";
+import Error from "../components/error";
+import Breadcrumbs from "../components/breadcrumbs";
+import LoadMoreButton from "../components/load-more-button";
+import { ToggleFavoriteButton } from "../components/toggle-favorite-item-button";
+import { ItemTypeEnum } from "../types";
+
 
 const PAGE_SIZE = 12;
 
@@ -20,7 +22,7 @@ export default function Launches() {
       sort: "launch_date_utc",
     }
   );
-  console.log(data, error);
+
   return (
     <div>
       <Breadcrumbs
@@ -125,8 +127,9 @@ export function LaunchItem({ launch }) {
             </Box>
           </Box>
 
-          <ToggleFavoriteLaunchButton
-            launch={launch}
+          <ToggleFavoriteButton
+            item={launch}
+            toggleItemType={ItemTypeEnum.Launch}
             preventDefault
           />
         </Box>
