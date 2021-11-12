@@ -13,19 +13,19 @@ import { FavoriteLaunchesDrawer } from "../components/favorites-drawer/index";
 export default function App() {
 
   // call this to get new timezones
-  // const { data } = useSpaceX(
-  //   "/launchpads",
-  // );
-  //
-  // useEffect(() => {
-  //   const getter = async () => {
-  //     if (data) {
-  //       const timezonesBySiteName = await getTimezonesBySiteName(data)
-  //       console.log("timezonesBySiteName", timezonesBySiteName)
-  //     }
-  //   }
-  //   getter()
-  // }, [data])
+  const { data } = useSpaceX(
+    "/launchpads",
+  );
+
+  useEffect(() => {
+    const getter = async () => {
+      if (data) {
+        const timezonesBySiteName = await getTimezonesBySiteName(data)
+        console.log("timezonesBySiteName", timezonesBySiteName)
+      }
+    }
+    getter()
+  }, [data])
 
   return (
     <div>
