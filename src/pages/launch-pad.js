@@ -17,12 +17,12 @@ import {
   AspectRatioBox,
 } from "@chakra-ui/core";
 
-import { useSpaceX }            from "../utils/use-space-x";
-import Error                    from "../components/error";
-import Breadcrumbs              from "../components/breadcrumbs";
-import { LaunchItem }           from "./launches";
+import { useSpaceX } from "../utils/use-space-x";
+import Error from "../components/error";
+import Breadcrumbs from "../components/breadcrumbs";
+import { LaunchItem } from "./launches";
 import { ToggleFavoriteButton } from "../components/toggle-favorite-item-button";
-import { ItemTypeEnum }         from "../types";
+import { ItemTypeEnum } from "../types";
 
 
 export default function LaunchPad() {
@@ -39,7 +39,11 @@ export default function LaunchPad() {
   if (error) return <Error />;
   if (!launchPad) {
     return (
-      <Flex justifyContent="center" alignItems="center" minHeight="50vh">
+      <Flex
+        justifyContent="center"
+        alignItems="center"
+        minHeight="50vh"
+      >
         <Spinner size="lg" />
       </Flex>
     );
@@ -57,7 +61,11 @@ export default function LaunchPad() {
       <Header launchPad={launchPad} />
       <Box m={[3, 6]}>
         <LocationAndVehicles launchPad={launchPad} />
-        <Text color="gray.700" fontSize={["md", null, "lg"]} my="8">
+        <Text
+          color="gray.700"
+          fontSize={["md", null, "lg"]}
+          my="8"
+        >
           {launchPad.details}
         </Text>
         <Map location={launchPad.location} />
@@ -109,17 +117,29 @@ function Header({ launchPad }) {
       </Box>
 
 
-      <Stack isInline spacing="3">
-        <Badge variantColor="purple" fontSize={["sm", "md"]}>
+      <Stack
+        isInline
+        spacing="3"
+      >
+        <Badge
+          variantColor="purple"
+          fontSize={["sm", "md"]}
+        >
           {launchPad.successful_launches}/{launchPad.attempted_launches}{" "}
           successful
         </Badge>
         {launchPad.stats === "active" ? (
-          <Badge variantColor="green" fontSize={["sm", "md"]}>
+          <Badge
+            variantColor="green"
+            fontSize={["sm", "md"]}
+          >
             Active
           </Badge>
         ) : (
-          <Badge variantColor="red" fontSize={["sm", "md"]}>
+          <Badge
+            variantColor="red"
+            fontSize={["sm", "md"]}
+          >
             Retired
           </Badge>
         )}
@@ -130,11 +150,22 @@ function Header({ launchPad }) {
 
 function LocationAndVehicles({ launchPad }) {
   return (
-    <SimpleGrid columns={[1, 1, 2]} borderWidth="1px" p="4" borderRadius="md">
+    <SimpleGrid
+      columns={[1, 1, 2]}
+      borderWidth="1px"
+      p="4"
+      borderRadius="md"
+    >
       <Stat>
         <StatLabel display="flex">
-          <Box as={MapPin} width="1em" />{" "}
-          <Box ml="2" as="span">
+          <Box
+            as={MapPin}
+            width="1em"
+          />{" "}
+          <Box
+            ml="2"
+            as="span"
+          >
             Location
           </Box>
         </StatLabel>
@@ -143,8 +174,14 @@ function LocationAndVehicles({ launchPad }) {
       </Stat>
       <Stat>
         <StatLabel display="flex">
-          <Box as={Navigation} width="1em" />{" "}
-          <Box ml="2" as="span">
+          <Box
+            as={Navigation}
+            width="1em"
+          />{" "}
+          <Box
+            ml="2"
+            as="span"
+          >
             Vehicles
           </Box>
         </StatLabel>
@@ -173,13 +210,25 @@ function RecentLaunches({ launches }) {
     return null;
   }
   return (
-    <Stack my="8" spacing="3">
-      <Text fontSize="xl" fontWeight="bold">
+    <Stack
+      my="8"
+      spacing="3"
+    >
+      <Text
+        fontSize="xl"
+        fontWeight="bold"
+      >
         Last launches
       </Text>
-      <SimpleGrid minChildWidth="350px" spacing="4">
+      <SimpleGrid
+        minChildWidth="350px"
+        spacing="4"
+      >
         {launches.map((launch) => (
-          <LaunchItem launch={launch} key={launch.flight_number} />
+          <LaunchItem
+            launch={launch}
+            key={launch.flight_number}
+          />
         ))}
       </SimpleGrid>
     </Stack>

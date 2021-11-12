@@ -1,6 +1,6 @@
-import React                                 from "react";
-import { useParams, Link as RouterLink }     from "react-router-dom";
-import { format as timeAgo }                 from "timeago.js";
+import React from "react";
+import { useParams, Link as RouterLink } from "react-router-dom";
+import { format as timeAgo } from "timeago.js";
 import { Watch, MapPin, Navigation, Layers } from "react-feather";
 import {
   Flex,
@@ -20,15 +20,13 @@ import {
   AspectRatioBox,
   StatGroup,
   Tooltip
-}                                            from "@chakra-ui/core";
-
-import { useSpaceX }            from "../utils/use-space-x";
-import { formatDateTime }       from "../utils/format-date";
-import Error                    from "../components/error";
-import Breadcrumbs              from "../components/breadcrumbs";
+} from "@chakra-ui/core";
+import { useSpaceX } from "../utils/use-space-x";
+import { formatDateTime } from "../utils/format-date";
+import Error from "../components/error";
+import Breadcrumbs from "../components/breadcrumbs";
 import { ToggleFavoriteButton } from "../components/toggle-favorite-item-button";
-import { ItemTypeEnum }         from "../types";
-
+import { ItemTypeEnum } from "../types";
 
 
 export default function Launch() {

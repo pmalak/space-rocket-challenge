@@ -1,14 +1,14 @@
-import React                                         from "react";
+import React from "react";
 import { Badge, Box, Image, SimpleGrid, Text, Flex } from "@chakra-ui/core";
-import { format as timeAgo }                         from "timeago.js";
-import { Link }                                      from "react-router-dom";
-import { useSpaceXPaginated }                        from "../utils/use-space-x";
-import { formatDate }                                from "../utils/format-date";
-import Error                                         from "../components/error";
-import Breadcrumbs                                   from "../components/breadcrumbs";
-import LoadMoreButton                                from "../components/load-more-button";
-import { ToggleFavoriteButton }                      from "../components/toggle-favorite-item-button";
-import { ItemTypeEnum }                              from "../types";
+import { format as timeAgo } from "timeago.js";
+import { Link } from "react-router-dom";
+import { useSpaceXPaginated } from "../utils/use-space-x";
+import { formatDate } from "../utils/format-date";
+import Error from "../components/error";
+import Breadcrumbs from "../components/breadcrumbs";
+import LoadMoreButton from "../components/load-more-button";
+import { ToggleFavoriteButton } from "../components/toggle-favorite-item-button";
+import { ItemTypeEnum } from "../types";
 
 
 const PAGE_SIZE = 12;

@@ -1,13 +1,12 @@
-import React                            from "react";
+import React from "react";
 import { Badge, Box, SimpleGrid, Text } from "@chakra-ui/core";
-import { Link }                         from "react-router-dom";
-
-import Error                    from "../components/error";
-import Breadcrumbs              from "../components/breadcrumbs";
-import LoadMoreButton           from "../components/load-more-button";
-import { useSpaceXPaginated }   from "../utils/use-space-x";
+import { Link } from "react-router-dom";
+import Error from "../components/error";
+import Breadcrumbs from "../components/breadcrumbs";
+import LoadMoreButton from "../components/load-more-button";
+import { useSpaceXPaginated } from "../utils/use-space-x";
 import { ToggleFavoriteButton } from "../components/toggle-favorite-item-button";
-import { ItemTypeEnum }         from "../types";
+import { ItemTypeEnum } from "../types";
 
 
 const PAGE_SIZE = 12;

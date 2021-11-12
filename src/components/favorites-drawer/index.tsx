@@ -1,4 +1,4 @@
-import React                                      from "react";
+import React from "react";
 import {
   Button,
   Drawer, DrawerBody,
@@ -6,10 +6,10 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerOverlay, useDisclosure,
-}                                                 from "@chakra-ui/core";
+} from "@chakra-ui/core";
 import { useFavoriteLaunches } from "../../utils/favorites-context";
-import { FavoriteLaunches }                       from "./FavoriteLaunches";
-import { FavoriteLaunchPads }                     from "./FavoriteLaunchPads";
+import { FavoriteLaunches } from "./FavoriteLaunches";
+import { FavoriteLaunchPads } from "./FavoriteLaunchPads";
 import { ItemTypeEnum } from "../../types";
 
 export const FavoriteLaunchesDrawer = () => {
